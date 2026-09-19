@@ -14,6 +14,9 @@ __pycache__/
 .qodo/
 *.swp
 
+# Practice files (private, not part of the project)
+pythonpractices/
+
 # OS files
 Thumbs.db
 .DS_Store
