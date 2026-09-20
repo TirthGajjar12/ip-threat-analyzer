@@ -16,6 +16,7 @@ __pycache__/
 
 # Practice files (private, not part of the project)
 pythonpractices/
+BUILD_PLAN.md
 
 # OS files
 Thumbs.db
