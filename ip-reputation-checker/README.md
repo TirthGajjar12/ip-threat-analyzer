@@ -11,16 +11,24 @@ A Python command-line tool that extracts IP addresses from log files and checks 
 
 ## Usage
 
+Set the API key in your environment so it is not stored in shell history:
+
+```powershell
+$env:OTX_API_KEY = "YOUR_API_KEY"
+```
+
 ```bash
 # Check IPs from a file
-python checker.py -f sample_logs.txt -k YOUR_API_KEY
+python Backend/checker.py -f sample_logs.txt
 
 # Export results to CSV
-python checker.py -f sample_logs.txt -k YOUR_API_KEY -o csv
+python Backend/checker.py -f sample_logs.txt -o csv
 
 # Manual paste mode (no file)
-python checker.py -k YOUR_API_KEY
+python Backend/checker.py
 ```
+
+You can also pass the key explicitly with `--key`, but environment variables are safer for local use.
 
 ## Python Concepts Used
 
@@ -42,7 +50,7 @@ This project was built step-by-step to learn:
 ## Setup
 
 ```bash
-pip install -r requirements.txt
+pip install -r Backend/requirements.txt
 ```
 
 ## Get an API Key
