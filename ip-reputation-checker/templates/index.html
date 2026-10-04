@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ThreatTrace — IP Reputation Checker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <h1>⬡ ThreatTrace</h1>
+      <p>Paste logs. Extract IPs. Check reputation instantly.</p>
+    </header>
+
+    {% if error %}
+    <div class="alert">⚠ {{ error }}</div>
+    {% endif %}
+
+    <form action="/scan" method="POST">
+
+      <div class="field">
+        <label for="api_key">OTX API Key</label>
+        <input
+          type="text"
+          id="api_key"
+          name="api_key"
+          placeholder="Paste your AlienVault OTX API key here"
+          required
+        />
+      </div>
+
+      <div class="field">
+        <label for="text">Raw Log Input</label>
+        <textarea
+          id="text"
+          name="text"
+          rows="10"
+          placeholder="Paste your server logs here...&#10;e.g. Failed login from 185.220.101.45"
+          required
+        ></textarea>
+      </div>
+
+      <button type="submit">Scan IPs →</button>
+
+    </form>
+
+  </div>
+</body>
+</html>

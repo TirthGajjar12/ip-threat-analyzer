@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Results — ThreatTrace</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <h1>⬡ ThreatTrace</h1>
+      <p>Scan complete — {{ total }} IP{{ 's' if total != 1 }} analysed</p>
+    </header>
+
+    <!-- summary pills -->
+    <div class="summary">
+      <div class="pill clean">✔ {{ clean }} Clean</div>
+      <div class="pill suspicious">⚠ {{ suspicious }} Suspicious</div>
+      <div class="pill malicious">✖ {{ malicious }} Malicious</div>
+    </div>
+
+    <!-- results table -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>IP Address</th>
+            <th>Status</th>
+            <th>Pulses</th>
+            <th>Country</th>
+            <th>Tags</th>
+            <th>Malware</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in results %}
+          <tr class="row-{{ r.status | lower }}">
+            <td>{{ loop.index }}</td>
+            <td class="mono">{{ r.ip }}</td>
+            <td>
+              <span class="badge {{ r.status | lower }}">
+                {% if r.status == "Clean" %}✔
+                {% elif r.status == "Suspicious" %}⚠
+                {% elif r.status == "Malicious" %}✖
+                {% else %}?{% endif %}
+                {{ r.status }}
+              </span>
+            </td>
+            <td>{{ r.pulse_count }}</td>
+            <td>{{ r.country }}</td>
+            <td>{{ r.tags }}</td>
+            <td>{{ r.malware }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <a href="/" class="btn-back">← Scan Again</a>
+
+  </div>
+</body>
+</html>
